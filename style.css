@@ -1,0 +1,233 @@
+/* styles.css */
+
+/* Variabili CSS per i colori */
+:root {
+    --colore-primario: #007bff; /* Blu forte */
+    --colore-secondario: #1E90FF; /* Blu forte */
+    --colore-sfondo: #00BFFF; /* Azzurro chiaro */
+    --colore-testonero: #333; /* Testo principale */
+    --colore-bianco: #fff; /* Bianco */
+    --colore-rosso: #dc3545; /* Rosso */
+    --colore-verde: #28a745; /* Verde */
+    --colore-verde-scuro: #218838; /* Verde scuro */
+    --colore-blu-scuro: #0056b3; /* Blu scuro */
+}
+
+/* Stili generali */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--colore-sfondo);
+    color: var(--colore-testonero);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    background-color: var(--colore-primario);
+    color: var(--colore-bianco);
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+    position: relative; /* Posizione relativa per il pulsante Indietro */
+}
+
+.indietro {
+    position: absolute; /* Posizionamento assoluto */
+    top: 10px; /* Spazio dal bordo superiore */
+    left: 10px; /* Spazio dal bordo sinistro */
+    background-color: var(--colore-rosso);
+    color: var(--colore-bianco);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px; /* Uniformato l'altezza */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px; /* Dimensione del font */
+}
+
+.indietro:hover {
+    background-color: #c82333; /* Rosso scuro al passaggio del mouse */
+}
+
+h1 {
+    margin: 0;
+}
+
+h2 {
+    margin: 20px 0;
+    text-align: center; /* Centra il titolo Menù */
+}
+
+.pagina {
+    display: none; /* Nascondi tutte le pagine di default */
+}
+
+.pagina.attiva {
+    display: block; /* Mostra solo la pagina attiva */
+}
+
+.pulsanti-iniziali {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+button {
+    background-color: var(--colore-primario);
+    color: var(--colore-bianco);
+    border: none;
+    border-radius: 5px;
+    padding: 15px 25px; /* Uniformato l'altezza dei pulsanti */
+    margin: 10px 5px; /* Aggiunto margine tra i pulsanti */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex; /* Rende il contenuto del pulsante un flexbox */
+    align-items: center; /* Allinea verticalmente il contenuto */
+    justify-content: center; /* Centra il contenuto */
+}
+
+button:hover {
+    background-color: var(--colore-blu-scuro); /* Blu scuro al passaggio del mouse */
+}
+
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.menu-container > div {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+footer {
+    background-color: var(--colore-primario);
+    color: var(--colore-bianco);
+    text-align: center;
+    padding: 10px 0;
+    position: relative; /* Cambiato in relativo per adattamento */
+    width: 100%;
+}
+
+/* Stili per le domande di preferenza */
+.domanda {
+    margin-bottom: 20px;
+}
+
+/* Stili per le risposte */
+.risposta {
+    display: flex;
+    justify-content: space-between; /* Spazio tra le opzioni */
+    background-color: #e7f3ff; /* Colore di sfondo chiaro */
+    border-radius: 10px; /* Angoli smussati */
+    padding: 10px;
+}
+
+.risposta-opzione {
+    flex: 1; /* Ogni opzione occupa uguale spazio */
+    text-align: center; /* Testo centrato */
+}
+
+.risposta-opzione input {
+    margin-right: 5px; /* Spazio tra input e testo */
+}
+
+
+/* Stile per le Sezioni di Preferenze */
+.categoria {
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.domanda {
+    margin-bottom: 20px;
+}
+
+.risposta {
+    display: flex;
+    justify-content: space-between;
+    background-color: #e7f3ff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.risposta-opzione {
+    flex: 1;
+    text-align: center;
+}
+
+
+
+
+/* Stili per il modulo di registrazione */
+#registrazione-form, #modifica-form {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: var(--colore-bianco); /* Bianco per il modulo */
+    border-radius: 10px; /* Angoli smussati per il modulo */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombra per il modulo */
+}
+
+/* Nuovo stile per i campi di input di registrazione */
+.input-registrazione {
+    padding: 15px; /* Aumenta l'imbottitura */
+    border: 1px solid #ccc; /* Bordo grigio chiaro */
+    border-radius: 10px; /* Angoli smussati */
+    margin-bottom: 20px; /* Spazio tra i campi */
+    font-size: 16px; /* Dimensione del font */
+}
+
+/* Modifiche per select */
+#tipo-profilo {
+    padding: 15px; /* Aggiungi padding per il select */
+    border: 1px solid #ccc; /* Bordo grigio chiaro */
+    border-radius: 10px; /* Angoli smussati */
+    font-size: 16px; /* Dimensione del font */
+}
+
+/* Stili per il pulsante di registrazione */
+#registrazione-form button {
+    margin-top: 20px; /* Spazio sopra il pulsante Registrati */
+    padding: 15px; /* Aumenta l'imbottitura del pulsante */
+}
+
+
+
+/* Scelta dei Rappresentanti */
+#selettore-candidati-politici {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+#candidati-politici-lista {
+    margin-top: 20px;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    button {
+        padding: 10px 20px; /* Dimensioni più piccole sui dispositivi mobili */
+    }
+
+    .indietro {
+        padding: 8px 10px; /* Dimensioni più piccole per il pulsante Indietro */
+    }
+
+    .menu-container {
+        flex-direction: column; /* Colonne sui dispositivi mobili */
+    }
+}
