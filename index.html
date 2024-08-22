@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEMOS</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    
+    <!-- Includere Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js"></script>
+</head>
+<body>
+    <header>
+        <h1>DEMOS</h1>
+    </header>
+
+    <!-- Pagina Iniziale -->
+    <section id="pagina-iniziale" class="pagina attiva">
+        <h2>Benvenuto</h2>
+        <div class="pulsanti-iniziali">
+            <button id="iscriviti-button">Iscriviti</button>
+          <button id="login-button">Login</button> 
+            <button id="accedi-admin-button">Accedi come Admin</button>
+        </div>
+    </section>
+
+    <!-- Pagina di Registrazione -->
+    <section id="registrazione" class="pagina">
+    <form id="registrazione-form">
+        <input type="text" id="nome" class="input-registrazione" placeholder="Nome" required>
+        <input type="text" id="cognome" class="input-registrazione" placeholder="Cognome" required>
+        <input type="email" id="email" class="input-registrazione" placeholder="Email" required>
+        
+        <input type="text" id="codice-fiscale" class="input-registrazione" placeholder="Codice Fiscale" required>
+        <span id="error-codice-fiscale" class="error-message" style="color: red; display: none;"></span>
+
+             
+            </div>
+            
+            <div class="input-container">
+                <span class="icon" id="icon-password" style="display: none;">✔️</span>
+                <input type="password" id="password" class="input-registrazione" placeholder="Password" required>
+            </div>
+            
+            <div class="input-container">
+                <span class="icon" id="icon-conferma-password" style="display: none;">✔️</span>
+                <input type="password" id="conferma-password" class="input-registrazione" placeholder="Conferma Password" required>
+            </div>
+            
+            <select id="tipo-profilo" class="input-registrazione" required>
+                <option value="Elettore">Elettore</option>
+                <option value="Candidato">Candidato</option>
+                <option value="Politico">Politico</option>
+            </select>
+            <button type="submit">Registrati</button>
+        </form>
+    </section>
+  
+  
+  <!-- Pagina di Login -->
+<section id="login" class="pagina">
+    <form id="login-form">
+        <input type="email" id="login-email" class="input-registrazione" placeholder="Email" required>
+        <input type="password" id="login-password" class="input-registrazione" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+</section>
+
+
+    <!-- Pagina Menù -->
+    <section id="menu" class="pagina">
+        <h2 style="text-align: center;">Menù</h2>
+        <div class="menu-container">
+            <button onclick="mostraPagina('profilo')">👤 Profilo</button>
+            <button onclick="mostraPagina('rappresentanti')">🏛️ Rappresentanti</button>
+            <button onclick="mostraPagina('preferenze')">📊 Preferenze</button>
+            <button onclick="mostraPagina('impostazioni')">⚙️ Impostazioni</button>
+            <button onclick="mostraPagina('consigliaci')">💬 Consigliaci</button>
+            <button onclick="mostraPagina('dona')">💵 Dona</button>
+        </div>
+    </section>
+
+    <!-- Pagina Profilo -->
+    <section id="profilo" class="pagina">
+        <button class="indietro" onclick="mostraPagina('menu')">Indietro</button>
+        <h2>Profilo Utente</h2>
+        <div class="profilo-info">
+            <img id="profilo-foto" src="placeholder.jpg" alt="Foto Profilo" />
+            <div>
+                <p><strong>Nome:</strong> <span id="profilo-nome"></span></p>
+                <p><strong>Cognome:</strong> <span id="profilo-cognome"></span></p>
+                <p><strong>Categoria:</strong> <span id="profilo-categoria"></span></p>
+                <p><strong>Data di Nascita:</strong> <span id="profilo-data-nascita"></span></p>
+                <p><strong>Genere:</strong> <span id="profilo-genere"></span></p>
+                <p><strong>Regione:</strong> <span id="profilo-regione"></span></p>
+                <p><strong>Provincia:</strong> <span id="profilo-provincia"></span></p>
+                <p><strong>Comune:</strong> <span id="profilo-comune"></span></p>
+                <p><strong>Iscritto a:</strong> <span id="profilo-partito"></span></p>
+                <p><strong>Background politico:</strong> <span id="profilo-background"></span></p>
+            </div>
+        </div>
+        <button onclick="mostraPagina('modifica-profilo')">Modifica Profilo</button>
+    </section>
+
+    <!-- Pagina Modifica Profilo -->
+    <section id="modifica-profilo" class="pagina">
+    <button class="indietro" onclick="mostraPagina('menu')">Indietro</button>
+        <h2>Modifica Profilo</h2>
+        <form id="modifica-form">
+            <label for="modifica-nome">Nome:</label>
+            <input type="text" id="modifica-nome" required>
+
+            <label for="modifica-cognome">Cognome:</label>
+            <input type="text" id="modifica-cognome" required>
+
+            <label for="modifica-categoria">Categoria:</label>
+            <select id="modifica-categoria" required>
+                <option value="Elettore">Elettore</option>
+                <option value="Candidato">Candidato</option>
+                <option value="Politico">Politico</option>
+            </select>
+
+            <label for="modifica-data-nascita">Data di Nascita:</label>
+            <input type="date" id="modifica-data-nascita" required>
+
+            <label for="modifica-genere">Genere:</label>
+            <select id="modifica-genere" required>
+                <option value="Maschio">Maschio</option>
+                <option value="Femmina">Femmina</option>
+                <option value="Altro">Altro</option>
+            </select>
+
+            <label for="modifica-regione">Regione:</label>
+            <select id="modifica-regione" required>
+                <option value="">Seleziona una regione</option>
+                <option value="Lazio">Lazio</option>
+                <option value="Lombardia">Lombardia</option>
+                <option value="Campania">Campania</option>
+                <!-- Aggiungi le altre regioni -->
+            </select>
+
+            <label for="modifica-provincia">Provincia:</label>
+            <select id="modifica-provincia" required disabled>
+                <option value="">Seleziona una provincia</option>
+            </select>
+
+            <label for="modifica-comune">Comune:</label>
+            <select id="modifica-comune" required disabled>
+                <option value="">Seleziona un comune</option>
+            </select>
+
+            <label for="modifica-partito">Iscritto a:</label>
+            <select id="modifica-partito">
+                <option value="Partito Democratico">Partito Democratico</option>
+                <option value="Lega">Lega</option>
+                <option value="Movimento 5 Stelle">Movimento 5 Stelle</option>
+                <!-- Aggiungi altri partiti -->
+            </select>
+
+            <label for="modifica-background">Background politico:</label>
+            <textarea id="modifica-background" rows="4"></textarea>
+
+            <button type="submit">Salva Modifiche</button>
+        </form>
+    </section>
+
+    <!-- Pagina Rappresentanti -->
+    <section id="rappresentanti" class="pagina">
+        <button class="indietro" onclick="mostraPagina('menu')">Indietro</button>
+        <h2>Rappresentanti</h2>
+        <p>Scegli il livello di rappresentanza:</p>
+          <div id="selettore-candidati-politici">
+        <button onclick="scegliMigliori('candidati')">Scegli Candidato</button>
+        <button onclick="scegliMigliori('politici')">Scegli Politico</button>
+    </div>
+    <div id="candidati-politici-lista">
+        <!-- Mostra qui i risultati dei candidati o politici -->
+    </div>
+        <button onclick="scegliLivello('europeo')">Europeo</button>
+        <button onclick="scegliLivello('nazionale')">Nazionale</button>
+        <button onclick="scegliLivello('regionale')">Regionale</button>
+        <button onclick="scegliLivello('provinciale')">Provinciale</button>
+        <button onclick="scegliLivello('comunale')">Comunale</button>
+
+     <!-- Sezione per mostrare i candidati suggeriti -->
+        <div id="candidati-suggeriti" class="candidati-lista">
+            <h3>Candidati suggeriti:</h3>
+            <div id="lista-candidati"></div>
+        </div>
+
+        <!-- Sezione per confermare la scelta del rappresentante -->
+        <div id="scelta-rappresentante" class="scelta-container">
+            <h3>Hai selezionato:</h3>
+            <p id="rappresentante-selezionato"></p>
+            <button id="conferma-scelta" onclick="confermaRappresentante()">Conferma</button>
+        </div>
+    </section>
+
+    <!-- Pagina Preferenze -->
+<section id="preferenze" class="pagina">
+    <button class="indietro" onclick="mostraPagina('menu')">Indietro</button>
+    <h2>Preferenze</h2>
+    <p>Seleziona le tue preferenze:</p>
+    <form id="preferenze-form">
+        <!-- Categoria Economia -->
+        <div class="categoria" style="background-color: yellow;">
+            <h3>Economia</h3>
+            <div class="domanda">
+                <label>Domanda 1:</label>
+                <div class="risposta">
+                    <label class="risposta-opzione">
+                        <input type="radio" name="economia1" value="sì"> Sì
+                    </label>
+                    <label class="risposta-opzione">
+                        <input type="radio" name="economia1" value="non so" checked> Non so
+                    </label>
+                    <label class="risposta-opzione">
+                        <input type="radio" name="economia1" value="no"> No
+                    </label>
+                </div>
+            </div>
+            <!-- Aggiungi altre 4 domande per Economia -->
+        </div>
+
+        <!-- Categoria Ambiente -->
+        <div class="categoria" style="background-color: green;">
+            <h3>Ambiente</h3>
+            <!-- 5 domande simili a Economia -->
+        </div>
+
+        <!-- Categoria Diritti -->
+        <div class="categoria" style="background-color: pink;">
+            <h3>Diritti</h3>
+            <!-- 5 domande simili a Economia -->
+        </div>
+
+        <button type="submit">Salva Preferenze</button>
+    </form>
+</section>
+
+
+    <!-- Pagina Impostazioni -->
+    <section id="impostazioni" class="pagina">
+        <button class="indietro" onclick="mostraPagina('menu')">Indietro</button>
+        <h2>Impostazioni</h2>
+        <p>Modifica le tue impostazioni di privacy e sicurezza.</p>
+        <form id="impostazioni-form">
+            <label>
+                <input type="checkbox" name="privacy" checked> Abilita privacy
+            </label>
+            <label>
+                <input type="checkbox" name="notifiche"> Ricevi notifiche
+            </label>
+            <button type="submit">Salva Impostazioni</button>
+        </form>
+    </section>
+  
+    <!-- Pagina Consigliaci -->
+    <section id="consigliaci" class="pagina">
+        <button class="indietro" onclick="mostraPagina('menu')">Indietro</button>
+        <h2>Consigliaci</h2>
+        <form id="consigliaci-form">
+            <label for="feedback">Il tuo feedback:</label>
+            <textarea id="feedback" rows="4" required></textarea>
+            <button type="submit">Invia Feedback</button>
+        </form>
+    </section>
+
+    <!-- Pagina Dona -->
+    <section id="dona" class="pagina">
+        <button class="indietro" onclick="mostraPagina('menu')">Indietro</button>
+        <h2>Dona</h2>
+        <form id="dona-form">
+            <label for="importo">Importo:</label>
+            <input type="number" id="importo" required>
+            <button type="submit">Dona</button>
+        </form>
+    </section>
+
+</body>
+</html>
