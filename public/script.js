@@ -1,9 +1,9 @@
 // script.js
 
 // Importa le funzioni necessarie da Firebase
-import { initializeApp } from "https://esm.sh/firebase/app";
-import { getFirestore, doc, setDoc, getDoc } from "https://esm.sh/firebase/firestore"; // Importa Firestore
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://esm.sh/firebase/auth"; // Importa Auth
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js"; 
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js"; 
 
 // Configurazione Firebase
 const firebaseConfig = {
