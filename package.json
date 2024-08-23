@@ -1,4 +1,11 @@
 {
+  "name": "DEMOS",   // Aggiungi un nome per il tuo progetto
+  "version": "1.0.0",                 // Versione del tuo progetto
+  "description": "Descrizione del progetto", // Descrizione opzionale
+  "main": "script.js",                 // File principale del tuo progetto (se applicabile)
+  "scripts": {                        // Se desideri aggiungere script per npm
+    "start": "node script.js"          // Esempio di script per avviare il progetto
+  },
   "dependencies": {
     "firebase": "^10.13.0"
   },
