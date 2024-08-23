@@ -2,7 +2,7 @@
 
 // Importa le funzioni necessarie da Firebase
 import { initializeApp } from "https://esm.sh/firebase/app";
-import { getFirestore } from "https://esm.sh/firebase/firestore"; // Importa Firestore
+import { getFirestore, doc, setDoc, getDoc } from "https://esm.sh/firebase/firestore"; // Importa Firestore
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://esm.sh/firebase/auth"; // Importa Auth
 
 // Configurazione Firebase
@@ -301,22 +301,27 @@ const errorMessages = {
 
 let codiceFiscaleUtilizzato = []; // Array per simulare i codici fiscali registrati
 
-// Aggiungi la classe 'attivo' al pulsante cliccato
-function attivaPulsante(pulsante) {
-    const tuttiIButton = document.querySelectorAll('.menu-container button');
-    tuttiIButton.forEach(btn => btn.classList.remove('attivo'));
-    pulsante.classList.add('attivo');
-}
 
-// Event listener per i pulsanti del menù
+
+// Funzione dei Pulsanti
+// Riferimenti agli elementi DOM
 const pulsantiMenu = document.querySelectorAll('.menu-container button');
+
+// Aggiungi l'event listener per i pulsanti del menu
 pulsantiMenu.forEach(pulsante => {
     pulsante.addEventListener('click', () => {
         const pagina = pulsante.getAttribute('onclick').split("'")[1]; // Estrai il nome della pagina dall'attributo onclick
+        
+        // Mostra la pagina selezionata
         mostraPagina(pagina);
-        attivaPulsante(pulsante);
+        
+        // Gestisci l'attivazione del pulsante
+        const tuttiIButton = document.querySelectorAll('.menu-container button');
+        tuttiIButton.forEach(btn => btn.classList.remove('attivo')); // Rimuovi la classe 'attivo' da tutti i pulsanti
+        pulsante.classList.add('attivo'); // Aggiungi la classe 'attivo' al pulsante cliccato
     });
 });
+
 
 // Event listener per il pulsante "Iscriviti"
 iscrivitiButton.addEventListener("click", () => {
@@ -350,58 +355,6 @@ function verificaCodiceFiscale(codiceFiscale) {
     }
 }
 
-// Funzione per registrare l'utente
-async function registrati(nome, cognome, email, password, tipo) {
-    try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password); // Usa una password sicura
-        const user = userCredential.user;
-
-        await setDoc(doc(db, 'utenti', user.uid), {
-            nome: nome,
-            cognome: cognome,
-            email: email,
-            codiceFiscale: codiceFiscaleInput.value,
-            tipoProfilo: tipo,
-            preferenze: tipo === "Elettore" ? {} : null,
-            datiPubblici: (tipo === "Candidato" || tipo === "Politico") ? { partito: "", biografia: "" } : null
-        });
-        console.log("Utente registrato con ID: ", user.uid);
-        alert("Registrazione avvenuta con successo!");
-        codiceFiscaleUtilizzato.push(codiceFiscaleInput.value); // Aggiungi codice fiscale utilizzato
-        mostraPagina("pagina-iniziale"); // Torna alla pagina iniziale
-    } catch (error) {
-        console.error("Errore durante la registrazione:", error.message);
-        alert("Registrazione fallita: " + error.message);
-    }
-}
-
-// Funzione per gestire la registrazione
-registrazioneForm.addEventListener('submit', async function(event) {
-    event.preventDefault();
-    
-    // Recupera i dati dal form
-    const nome = document.getElementById('nome').value;
-    const cognome = document.getElementById('cognome').value;
-    const email = document.getElementById('email').value;
-    const password = passwordInput.value;
-    const tipo = document.getElementById('tipo-profilo').value;
-
-    // Reset messaggi di errore
-    errorMessages.codiceFiscale.textContent = "";
-    errorMessages.password.textContent = "";
-    errorMessages.confermaPassword.textContent = "";
-
-    // Verifica del codice fiscale
-    if (!verificaCodiceFiscale(codiceFiscaleInput.value)) {
-        return; // Esci se il codice fiscale non è valido
-    }
-
-    try {
-        await registrati(nome, cognome, email, password, tipo);
-    } catch (error) {
-        alert("Registrazione fallita: " + error.message);
-    }
-});
 
 // Array fittizio di codici fiscali già registrati (dovresti sostituirlo con una chiamata al tuo database)
 const codiciFiscaliRegistrati = ["RSSMRA85M01H501Z", "VRNGNN99R01H501F"]; // Esempi di codici fiscali
@@ -411,21 +364,73 @@ function isCodiceFiscaleRegistrato(codiceFiscale) {
     return codiciFiscaliRegistrati.includes(codiceFiscale);
 }
 
-// Evento di submit del modulo
-document.getElementById("registrazione-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Impedisce il comportamento predefinito del modulo
-
-    const codiceFiscale = document.getElementById("codice-fiscale").value.trim();
+// Funzione di Registrazione
+// Funzione di Registrazione
+document.getElementById("registrazione-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
     
-    if (isCodiceFiscaleRegistrato(codiceFiscale)) {
-        alert("Cittadino già iscritto");
-        return; // Ferma l'esecuzione se il codice fiscale è già registrato
+    const nome = document.getElementById("nome").value;
+    const cognome = document.getElementById("cognome").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const codiceFiscale = document.getElementById("codice-fiscale").value;
+    const tipoProfilo = document.getElementById("tipo-profilo").value;
+
+    // Verifica il codice fiscale
+    if (!verificaCodiceFiscale(codiceFiscale)) {
+        return; // Esci se il codice fiscale non è valido
     }
 
-    // Qui puoi proseguire con il salvataggio dei dati, se il codice fiscale non è registrato
-    alert("Registrazione completata con successo!");
-    // ... inserisci il codice per salvare i dati nel database ...
+    try {
+        // Crea l'utente con Firebase Authentication
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Salva ulteriori dettagli utente nel Firestore
+        await setDoc(doc(db, "utenti", user.uid), {
+            nome: nome,
+            cognome: cognome,
+            email: email,
+            codiceFiscale: codiceFiscale,
+            tipoProfilo: tipoProfilo,
+            preferenze: []
+        });
+
+        // Aggiungi codice fiscale utilizzato all'array (se necessario)
+        codiceFiscaleUtilizzato.push(codiceFiscale);
+
+        // Reindirizza alla pagina del menu
+        mostraPagina('menu');
+        alert("Registrazione avvenuta con successo!");
+    } catch (error) {
+        console.error("Errore durante la registrazione: ", error.message);
+        alert("Registrazione fallita: " + error.message);
+    }
 });
+
+
+// Definire la variabile "heartbeats"
+const heartbeats = {
+    enabled: true,
+    interval: 30000, // Intervallo di 30 secondi
+    lastSent: Date.now()
+};
+
+// Funzione per inviare heartbeats
+function sendHeartbeat() {
+    if (heartbeats.enabled) {
+        // Logica per inviare un heartbeat al server
+        console.log("Heartbeat inviato al server");
+
+        // Aggiorna l'ultima volta che è stato inviato un heartbeat
+        heartbeats.lastSent = Date.now();
+    }
+}
+
+// Invia heartbeat periodicamente ogni "heartbeats.interval" millisecondi
+setInterval(sendHeartbeat, heartbeats.interval);
+
+
 
 // Funzione per accedere come Admin
 document.getElementById('accedi-admin-button').addEventListener('click', function() {
@@ -445,3 +450,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
