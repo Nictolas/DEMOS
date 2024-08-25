@@ -37,12 +37,12 @@
             
             <div class="input-container">
                 <span class="icon" id="icon-password" style="display: none;">✔️</span>
-                <input type="password" id="password" class="input-registrazione" placeholder="Password" required>
+                <input type="password" id="password" class="input-registrazione" placeholder="Password" required autocomplete="new-password">
             </div>
             
             <div class="input-container">
                 <span class="icon" id="icon-conferma-password" style="display: none;">✔️</span>
-                <input type="password" id="conferma-password" class="input-registrazione" placeholder="Conferma Password" required>
+                <input type="password" id="conferma-password" class="input-registrazione" placeholder="Conferma Password" required autocomplete="new-password">
             </div>
             
             <select id="tipo-profilo" class="input-registrazione" required>
@@ -59,7 +59,7 @@
 <section id="login" class="pagina">
     <form id="login-form">
         <input type="email" id="login-email" class="input-registrazione" placeholder="Email" required>
-        <input type="password" id="login-password" class="input-registrazione" placeholder="Password" required>
+        <input type="password" id="login-password" class="input-registrazione" placeholder="Password" required autocomplete="current-password">
         <button type="submit">Login</button>
     </form>
 </section>
