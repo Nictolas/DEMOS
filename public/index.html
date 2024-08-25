@@ -275,33 +275,6 @@
         </form>
     </section>
   
-     <script>
-        // Definisci la variabile "heartbeats"
-        const heartbeats = {
-            enabled: true,
-            interval: 30000, // Intervallo di 30 secondi
-            lastSent: Date.now()
-        };
-
-        // Funzione per inviare heartbeats
-        function sendHeartbeat() {
-            if (heartbeats.enabled) {
-                // Logica per inviare un heartbeat al server
-                console.log("Heartbeat inviato al server");
-
-                // Aggiorna l'ultima volta che è stato inviato un heartbeat
-                heartbeats.lastSent = Date.now();
-            }
-        }
-
-        // Invia heartbeat periodicamente ogni "heartbeats.interval" millisecondi
-        setInterval(sendHeartbeat, heartbeats.interval);
-
-        // Il resto del tuo codice qui
-    </script>
-
-  
-  
    <script>
         function mostraPagina(idPagina) {
             var pagine = document.getElementsByClassName('page');
