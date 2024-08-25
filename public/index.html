@@ -4,16 +4,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DEMOS</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
     
     <!-- Includere Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js"></script>
   
-     <!-- Carica il tuo file JavaScript come modulo -->
-<script type="module" src="script.js"></script>
-  
+  <script src="script.js" type="module"></script>
+
 </head>
 <body>
     <header>
@@ -306,7 +304,18 @@
 
         // Il resto del tuo codice qui
     </script>
+   <script>
+        function mostraPagina(idPagina) {
+            var pagine = document.getElementsByClassName('page');
+            for (var i = 0; i < pagine.length; i++) {
+                pagine[i].classList.remove('active');
+            }
 
-
+            var paginaDaMostrare = document.getElementById(idPagina);
+            if (paginaDaMostrare) {
+                paginaDaMostrare.classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
