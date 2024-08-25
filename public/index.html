@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
@@ -28,7 +29,7 @@
     <form id="registrazione-form">
         <input type="text" id="nome" class="input-registrazione" placeholder="Nome" required>
         <input type="text" id="cognome" class="input-registrazione" placeholder="Cognome" required>
-        <input type="email" id="email" class="input-registrazione" placeholder="Email" required>
+        <input type="email" id="email" class="input-registrazione" placeholder="Email" required autocomplete="email">
         
         <input type="text" id="codice-fiscale" class="input-registrazione" placeholder="Codice Fiscale" required autocomplete="username">
         <span id="error-codice-fiscale" class="error-message" style="color: red; display: none;"></span>
@@ -204,7 +205,7 @@
         <div class="categoria" style="background-color: yellow;">
             <h3>Economia</h3>
             <div class="domanda">
-                <label>Domanda 1:</label>
+                <label for="economia1">Domanda 1:</label>
                 <div class="risposta">
                     <label class="risposta-opzione">
                         <input type="radio" name="economia1" value="sì"> Sì
