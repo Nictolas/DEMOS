@@ -6,7 +6,7 @@ import { getFirestore, doc, setDoc, getDoc, query, collection, where, getDocs } 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js"; 
 
 // Configurazione Firebase
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyBgvJNsw-tBHQ9p7pKjwVobY21eP4yinME",
   authDomain: "demos-fc108.firebaseapp.com",
   projectId: "demos-fc108",
