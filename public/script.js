@@ -21,6 +21,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app); // Inizializza Firestore
 const auth = getAuth(app); // Inizializza Auth
 
+console.log("Firebase inizializzato:", app);
+
 // Funzione per passare a un'altra pagina
 function mostraPagina(pagina) {
   console.log(`Mostra pagina: ${pagina}`);
