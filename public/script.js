@@ -24,17 +24,6 @@ const auth = getAuth(app); // Inizializza Auth
 console.log("Firebase inizializzato:", app);
 
 
-// Funzione per passare a un'altra pagina
-function mostraPagina(pagina) {
-  console.log(`Mostra pagina: ${pagina}`);
-    const tutteLePagine = document.querySelectorAll('.pagina');
-    tutteLePagine.forEach(pagina => pagina.classList.remove('attiva')); // Rimuovi la classe 'attiva' da tutte le pagine
-
-    const paginaDaMostrare = document.getElementById(pagina);
-    paginaDaMostrare.classList.add('attiva'); // Aggiungi la classe 'attiva' alla pagina desiderata
-}
-
-
 // Funzione per inizializzare il caricamento della pagina iniziale
 
 document.addEventListener('DOMContentLoaded', () => {
