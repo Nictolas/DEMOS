@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
       <title>DEMOS</title>
+  <style>
+        .attiva { display: block; }
+        .pagina { display: none; }
+    </style>
     
        <!-- Includere Firebase con ES Modules -->
   <script type="module" src="script.js"></script>
@@ -269,16 +273,40 @@
   
    <script>
         function mostraPagina(idPagina) {
-            var pagine = document.getElementsByClassName('page');
+            var pagine = document.getElementsByClassName('pagina');
             for (var i = 0; i < pagine.length; i++) {
-                pagine[i].classList.remove('active');
+                pagine[i].classList.remove('attiva');
             }
 
             var paginaDaMostrare = document.getElementById(idPagina);
             if (paginaDaMostrare) {
-                paginaDaMostrare.classList.add('active');
+                paginaDaMostrare.classList.add('attiva');
             }
         }
     </script>
+  <script>
+  // Funzione unificata per mostrare una pagina specifica
+  function mostraPagina(idPagina) {
+    console.log(`Mostra pagina: ${idPagina}`);
+
+    // Seleziona tutte le pagine e rimuovi la classe 'active'
+    var pagine = document.getElementsByClassName('page');
+    for (var i = 0; i < pagine.length; i++) {
+      pagine[i].classList.remove('active');
+    }
+
+    // Aggiungi la classe 'active' alla pagina desiderata
+    var paginaDaMostrare = document.getElementById(idPagina);
+    if (paginaDaMostrare) {
+      paginaDaMostrare.classList.add('active');
+    }
+  }
+
+  // Inizializza la visualizzazione della pagina all'avvio
+  document.addEventListener('DOMContentLoaded', function() {
+    mostraPagina('pagina-iniziale'); // Imposta 'pagina-iniziale' come pagina da visualizzare all'inizio
+  });
+</script>
+
 </body>
 </html>
