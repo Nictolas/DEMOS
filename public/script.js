@@ -23,6 +23,7 @@ const auth = getAuth(app); // Inizializza Auth
 
 console.log("Firebase inizializzato:", app);
 
+
 // Funzione per passare a un'altra pagina
 function mostraPagina(pagina) {
   console.log(`Mostra pagina: ${pagina}`);
@@ -40,7 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     mostraPagina('pagina-iniziale'); // Mostra la pagina iniziale all'avvio
 
-
+  
+  
 // Event listener per i pulsanti
 
 // Funzione di registrazione
