@@ -11,16 +11,8 @@
         import { getAuth } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
         import { getFirestore } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
         
-        // Configura e inizializza Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyBgvJNsw-tBHQ9p7pKjwVobY21eP4yinME",
-  authDomain: "demos-fc108.firebaseapp.com",
-  projectId: "demos-fc108",
-  storageBucket: "demos-fc108.appspot.com",
-  messagingSenderId: "764587003476",
-  appId: "1:764587003476:web:10e894c9e01fa1b136e7c1",
-  measurementId: "G-ZNGCE89DF4"
-        };
+   // Importa firebaseConfig dal tuo script JS
+    import { firebaseConfig } from './script.js'; // Assicurati di avere il percorso corretto
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
