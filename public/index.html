@@ -5,13 +5,26 @@
     <title>DEMOS</title>
     <link rel="stylesheet" href="styles.css">
     
-    <!-- Includere Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js"></script>
-  
-  <script src="script.js" type="module"></script>
+       <!-- Includere Firebase con ES Modules -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
+        
+        // Configura e inizializza Firebase
+        const firebaseConfig = {
+            // ... configurazione Firebase ...
+        };
 
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Aggiungi qui il resto del codice Firebase
+    </script>
+
+    <!-- Includi il tuo script JS come modulo -->
+    <script src="script.js" type="module"></script>
 </head>
 <body>
     <header>
