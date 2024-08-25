@@ -290,15 +290,15 @@
     console.log(`Mostra pagina: ${idPagina}`);
 
     // Seleziona tutte le pagine e rimuovi la classe 'active'
-    var pagine = document.getElementsByClassName('page');
+    var pagine = document.getElementsByClassName('pagina');
     for (var i = 0; i < pagine.length; i++) {
-      pagine[i].classList.remove('active');
+      pagine[i].classList.remove('attiva');
     }
 
     // Aggiungi la classe 'active' alla pagina desiderata
     var paginaDaMostrare = document.getElementById(idPagina);
     if (paginaDaMostrare) {
-      paginaDaMostrare.classList.add('active');
+      paginaDaMostrare.classList.add('attiva');
     }
   }
 
