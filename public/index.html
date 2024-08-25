@@ -2,27 +2,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DEMOS</title>
     <link rel="stylesheet" href="styles.css">
+      <title>DEMOS</title>
     
        <!-- Includere Firebase con ES Modules -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
-        import { getAuth } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
-        
-   // Importa firebaseConfig dal tuo script JS
-    import { firebaseConfig } from './script.js'; // Assicurati di avere il percorso corretto
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        // Aggiungi qui il resto del codice Firebase
-    </script>
-
-    <!-- Includi il tuo script JS come modulo -->
-    <script src="script.js" type="module"></script>
+  <script type="module" src="script.js"></script>
 </head>
 <body>
     <header>
