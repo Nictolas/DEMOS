@@ -30,10 +30,15 @@ console.log("Firestore:", db);
 console.log("Auth:", auth);
 
 async function getHeartbeats() {
-    const heartbeatsCollection = collection(db, "heartbeat1"); // Assicurati che il nome della collezione sia corretto
-    const heartbeatsSnapshot = await getDocs(heartbeatsCollection);
-    const heartbeatsList = heartbeatsSnapshot.docs.map(doc => doc.data());
-    return heartbeatsList;
+    try {
+        const heartbeatsCollection = collection(db, "heartbeat1");
+        const heartbeatsSnapshot = await getDocs(heartbeatsCollection);
+        const heartbeatsList = heartbeatsSnapshot.docs.map(doc => doc.data());
+        return heartbeatsList;
+    } catch (error) {
+        console.error("Errore nel recupero dei heartbeats:", error);
+        return []; // Restituisce un array vuoto in caso di errore
+    }
 }
 
 // Funzione per passare a un'altra pagina
