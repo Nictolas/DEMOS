@@ -1,4 +1,5 @@
 // script.js
+console.log("Script caricato");
 
 // Importa le funzioni necessarie da Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
@@ -22,6 +23,8 @@ const db = getFirestore(app); // Inizializza Firestore
 const auth = getAuth(app); // Inizializza Auth
 
 console.log("Firebase inizializzato:", app);
+console.log("Firebase configurato:", firebaseConfig);
+
 
 
 // Funzione per passare a un'altra pagina
@@ -40,6 +43,7 @@ window.mostraPagina = function(pagina) {
 // Funzione per inizializzare il caricamento della pagina iniziale
 
 document.addEventListener('DOMContentLoaded', () => {
+   console.log("DOM completamente caricato e analizzato");
     mostraPagina('pagina-iniziale'); // Mostra la pagina iniziale all'avvio
 
   
