@@ -30,7 +30,7 @@ console.log("Firestore:", db);
 console.log("Auth:", auth);
 
 async function getHeartbeats() {
-    const heartbeatsCollection = collection(db, "heartbeats1"); // Assicurati che il nome della collezione sia corretto
+    const heartbeatsCollection = collection(db, "heartbeat1"); // Assicurati che il nome della collezione sia corretto
     const heartbeatsSnapshot = await getDocs(heartbeatsCollection);
     const heartbeatsList = heartbeatsSnapshot.docs.map(doc => doc.data());
     return heartbeatsList;
