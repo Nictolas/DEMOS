@@ -23,7 +23,7 @@
         <h2>Benvenuto</h2>
         <div class="pulsanti-iniziali">
             <button id="iscriviti-button">Iscriviti</button>
-          <button id="login-button">Login</button> 
+            <button id="login-button">Login</button> 
             <button id="accedi-admin-button">Accedi come Admin</button>
         </div>
     </section>
@@ -71,7 +71,7 @@
 
 
     <!-- Pagina Menù -->
-    <section id="menu" class="pagina">
+    <section id ="menu" class="pagina">
         <h2 style="text-align: center;">Menù</h2>
         <div class="menu-container">
             <button onclick="mostraPagina('profilo')">👤 Profilo</button>
@@ -270,19 +270,5 @@
             <button type="submit">Dona</button>
         </form>
     </section>
-  
-   <script>
-        function mostraPagina(idPagina) {
-            var pagine = document.getElementsByClassName('pagina');
-            for (var i = 0; i < pagine.length; i++) {
-                pagine[i].classList.remove('attiva');
-            }
-
-            var paginaDaMostrare = document.getElementById(idPagina);
-            if (paginaDaMostrare) {
-                paginaDaMostrare.classList.add('attiva');
-            }
-        }
-    </script>
 </body>
 </html>
