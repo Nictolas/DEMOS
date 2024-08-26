@@ -25,7 +25,16 @@ const auth = getAuth(app); // Inizializza Auth
 console.log("Firebase inizializzato:", app);
 console.log("Firebase configurato:", firebaseConfig);
 
+// Verifica che il database e l'autenticazione siano correttamente inizializzati
+console.log("Firestore:", db);
+console.log("Auth:", auth);
 
+async function getHeartbeats() {
+    const heartbeatsCollection = collection(db, "heartbeats"); // Assicurati che il nome della collezione sia corretto
+    const heartbeatsSnapshot = await getDocs(heartbeatsCollection);
+    const heartbeatsList = heartbeatsSnapshot.docs.map(doc => doc.data());
+    return heartbeatsList;
+}
 
 // Funzione per passare a un'altra pagina
 window.mostraPagina = function(pagina) {
