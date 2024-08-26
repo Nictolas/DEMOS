@@ -56,11 +56,14 @@ window.mostraPagina = function(pagina) {
 
 // Funzione per inizializzare il caricamento della pagina iniziale
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
    console.log("DOM completamente caricato e analizzato");
     mostraPagina('pagina-iniziale'); // Mostra la pagina iniziale all'avvio
 
-  
+   // Chiamata alla funzione per recuperare i heartbeats
+    const heartbeatsList = await getHeartbeats();
+    console.log("Heartbeats recuperati:", heartbeatsList); // Logga i heartbeats recuperati
+});
   
 // Event listener per i pulsanti
 
@@ -405,8 +408,6 @@ function isCodiceFiscaleRegistrato(codiceFiscale) {
 document.getElementById('accedi-admin-button').addEventListener('click', function() {
     mostraPagina('menu'); // Passa al menù senza autenticazione
 });
-
-  });
   
 document.addEventListener('DOMContentLoaded', function() {
   const pulsantiIndietro = document.querySelectorAll('.indietro');
