@@ -25,20 +25,21 @@ console.log("Firebase inizializzato:", app);
 
 
 // Funzione per passare a un'altra pagina
-function mostraPagina(pagina) {
-  console.log(`Mostra pagina: ${pagina}`);
-    const tutteLePagine = document.querySelectorAll('.pagina');
-    tutteLePagine.forEach(pagina => pagina.classList.remove('attiva')); // Rimuovi la classe 'attiva' da tutte le pagine
-
-    const paginaDaMostrare = document.getElementById(pagina);
-    paginaDaMostrare.classList.add('attiva'); // Aggiungi la classe 'attiva' alla pagina desiderata
+window.mostraPagina = function(pagina) {
+  const tutteLePagine = document.querySelectorAll('.pagina');
+  tutteLePagine.forEach(pagina => pagina.classList.remove('attiva'));
+  const paginaDaMostrare = document.getElementById(pagina);
+  if (paginaDaMostrare) {
+    paginaDaMostrare.classList.add('attiva');
+  } else {
+    console.error(`Pagina ${pagina} non trovata`);
+  }
 }
 
 
 // Funzione per inizializzare il caricamento della pagina iniziale
 
 document.addEventListener('DOMContentLoaded', () => {
-
     mostraPagina('pagina-iniziale'); // Mostra la pagina iniziale all'avvio
 
   
@@ -380,7 +381,6 @@ const codiciFiscaliRegistrati = ["RSSMRA85M01H501Z", "VRNGNN99R01H501F"]; // Ese
 function isCodiceFiscaleRegistrato(codiceFiscale) {
     return codiciFiscaliRegistrati.includes(codiceFiscale);
 }
-
 
 
 // Funzione per accedere come Admin
